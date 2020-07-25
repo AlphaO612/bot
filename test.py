@@ -9,6 +9,7 @@ import discord, asyncio, json
 DebugMode = False # True - Если он будет теститься НЕ на Основном сервере
 admin = 454570874410893322 # Администратор бота 
 maxnotice = 10 # Кол-во Предупреждений
+pwd = '/root/cosmicbot/'
 
 if DebugMode:
     guildid = 519087912445411368 # Айди сервера на котором он работает
@@ -911,18 +912,18 @@ async def editjson(ctx, id, time: int, tt, type, pen, text):
         await editjson(ctx, id, time, tt, type, pen, text)
 
 def writeStorage(name, set):
-    f = open('' + name, 'w')
+    f = open(pwd + name, 'w')
     f.write(set)
     f.close()
 
 def readStorage(name):
-    f = open('' + name, 'r')
+    f = open(pwd + name, 'r')
     set = f.read()
     f.close()
     return set
 
 def lenStorage(name, set):
-    f = open('' + name, 'r')
+    f = open(pwd + name, 'r')
     all = f.readlines()
     f.close()
     try:
@@ -1123,7 +1124,7 @@ async def loop():
                     json.dump(gg, write_file)
         await asyncio.sleep(30)
 
-token = open('token', 'r').readline()
+token = open(f'{pwd}token', 'r').readline()
 
 @client.event
 async def on_ready():
