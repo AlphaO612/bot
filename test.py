@@ -150,7 +150,7 @@ async def editjson(ctx, id, time: int, tt, type, pen, text):
                 await ctx.guild.get_member(id).add_roles(ban, reason=text)
             if not id in gg['banroom']:
                 gg['banroom'].append(id)
-                with open(f"DB/penalty/list", "w") as write_file:
+                with open(f"{pwd}DB/penalty/list", "w") as write_file:
                     json.dump(gg, write_file)
             type = 'banroom'
             copy['moderation'][type]['hasIt'] = True
@@ -395,7 +395,7 @@ async def editjson(ctx, id, time: int, tt, type, pen, text):
                     copy['moderation'][type]['time']['hour'] = deadline.hour
                     copy['moderation'][type]['time']['minute'] = deadline.minute
                     copy['moderation'][type]['time']['second'] = deadline.second
-            with open(f"DB/sXp/{id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                 json.dump(copy, write_file)
             jr = json.loads(readStorage(f'DB/sXp/{id}'))
         elif type == "mv":
@@ -403,7 +403,7 @@ async def editjson(ctx, id, time: int, tt, type, pen, text):
                 await ctx.guild.get_member(id).add_roles(mutev, reason=text)
             if not id in gg['mutevoice']:
                 gg['mutevoice'].append(id)
-                with open(f"DB/penalty/list", "w") as write_file:
+                with open(f"{pwd}DB/penalty/list", "w") as write_file:
                     json.dump(gg, write_file)
             type = 'mutevoice'
             copy['moderation'][type]['hasIt'] = True
@@ -648,7 +648,7 @@ async def editjson(ctx, id, time: int, tt, type, pen, text):
                     copy['moderation'][type]['time']['hour'] = deadline.hour
                     copy['moderation'][type]['time']['minute'] = deadline.minute
                     copy['moderation'][type]['time']['second'] = deadline.second
-            with open(f"DB/sXp/{id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                 json.dump(copy, write_file)
             jr = json.loads(readStorage(f'DB/sXp/{id}'))
         elif type == "mc":
@@ -656,7 +656,7 @@ async def editjson(ctx, id, time: int, tt, type, pen, text):
                 await ctx.guild.get_member(id).add_roles(mutec, reason=text)
             if not id in gg['mutechat']:
                 gg['mutechat'].append(id)
-                with open(f"DB/penalty/list", "w") as write_file:
+                with open(f"{pwd}DB/penalty/list", "w") as write_file:
                     json.dump(gg, write_file)
             type = 'mutechat'
             copy['moderation'][type]['hasIt'] = True
@@ -901,12 +901,12 @@ async def editjson(ctx, id, time: int, tt, type, pen, text):
                     copy['moderation'][type]['time']['hour'] = deadline.hour
                     copy['moderation'][type]['time']['minute'] = deadline.minute
                     copy['moderation'][type]['time']['second'] = deadline.second
-            with open(f"DB/sXp/{id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                 json.dump(copy, write_file)
             jr = json.loads(readStorage(f'DB/sXp/{id}'))
     except FileNotFoundError:
         copy = pattern
-        with open(f"DB/sXp/{id}", "w") as write_file:
+        with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
             json.dump(copy, write_file)
         jr = json.loads(readStorage(f'DB/sXp/{id}'))
         await editjson(ctx, id, time, tt, type, pen, text)
@@ -1017,7 +1017,7 @@ def check(id, type, td):
             
     except FileNotFoundError:
         copy = pattern
-        with open(f"DB/sXp/{id}", "w") as write_file:
+        with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
             json.dump(copy, write_file)
         jr = json.loads(readStorage(f'DB/sXp/{id}'))
         return check(id, type, id)
@@ -1041,15 +1041,15 @@ async def loop():
                         jr = json.loads(readStorage(f'DB/sXp/{i}'))
                     except FileNotFoundError:
                         copy = pattern
-                        with open(f"DB/sXp/{i}", "w") as write_file:
+                        with open(f"{pwd}DB/sXp/{i}", "w") as write_file:
                             json.dump(copy, write_file)
                         jr = json.loads(readStorage(f'DB/sXp/{i}'))
                     copy = jr
                     copy["moderation"]["banroom"]["hasIt"] = False
-                    with open(f"DB/sXp/{id}", "w") as write_file:
+                    with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                         json.dump(copy, write_file)
                     gg['banroom'].remove(i)
-                    with open(f"DB/penalty/list", "w") as write_file:
+                    with open(f"{pwd}DB/penalty/list", "w") as write_file:
                         json.dump(gg, write_file)
                     ban = client.get_guild(guildid).get_role(banid)
                     ch = client.get_guild(guildid).get_member(i)
@@ -1065,15 +1065,15 @@ async def loop():
                         jr = json.loads(readStorage(f'DB/sXp/{i}'))
                     except FileNotFoundError:
                         copy = pattern
-                        with open(f"DB/sXp/{i}", "w") as write_file:
+                        with open(f"{pwd}DB/sXp/{i}", "w") as write_file:
                             json.dump(copy, write_file)
                         jr = json.loads(readStorage(f'DB/sXp/{i}'))
                     copy = jr
                     copy["moderation"]["mutevoice"]["hasIt"] = False
-                    with open(f"DB/sXp/{id}", "w") as write_file:
+                    with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                         json.dump(copy, write_file)
                     gg['mutevoice'].remove(i)
-                    with open(f"DB/penalty/list", "w") as write_file:
+                    with open(f"{pwd}DB/penalty/list", "w") as write_file:
                         json.dump(gg, write_file)
                     ban = client.get_guild(guildid).get_role(mutevid)
                     ch = client.get_guild(guildid).get_member(i)
@@ -1090,15 +1090,15 @@ async def loop():
                         jr = json.loads(readStorage(f'DB/sXp/{i}'))
                     except FileNotFoundError:
                         copy = pattern
-                        with open(f"DB/sXp/{i}", "w") as write_file:
+                        with open(f"{pwd}DB/sXp/{i}", "w") as write_file:
                             json.dump(copy, write_file)
                         jr = json.loads(readStorage(f'DB/sXp/{i}'))
                     copy = jr
                     copy["moderation"]["mutechat"]["hasIt"] = False
-                    with open(f"DB/sXp/{id}", "w") as write_file:
+                    with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                         json.dump(copy, write_file)
                     gg['mutechat'].remove(i)
-                    with open(f"DB/penalty/list", "w") as write_file:
+                    with open(f"{pwd}DB/penalty/list", "w") as write_file:
                         json.dump(gg, write_file)
                     ban = client.get_guild(guildid).get_role(mutecid)
                     ch = client.get_guild(guildid).get_member(i)
@@ -1110,17 +1110,17 @@ async def loop():
                     jr = json.loads(readStorage(f'DB/sXp/{i}'))
                 except FileNotFoundError:
                     copy = pattern
-                    with open(f"DB/sXp/{i}", "w") as write_file:
+                    with open(f"{pwd}DB/sXp/{i}", "w") as write_file:
                         json.dump(copy, write_file)
                     jr = json.loads(readStorage(f'DB/sXp/{i}'))
                 copy = jr
                 copy["main"]["timeVoice"] = copy["main"]["timeVoice"] + 30
                 copy["main"]["sXp"] = copy["main"]["sXp"] + 1
-                with open(f"DB/sXp/{i}", "w") as write_file:
+                with open(f"{pwd}DB/sXp/{i}", "w") as write_file:
                     json.dump(copy, write_file)
             else:
                 gg['voiceSXP'].remove(i)
-                with open(f"DB/penalty/list", "w") as write_file:
+                with open(f"{pwd}DB/penalty/list", "w") as write_file:
                     json.dump(gg, write_file)
         await asyncio.sleep(30)
 
@@ -1148,7 +1148,7 @@ async def on_voice_state_update(member, before, after):
         list = json.loads(readStorage(f'DB/penalty/list'))
         gg = list
         gg['voiceSXP'].append(member.id)
-        with open(f"DB/penalty/list", "w") as write_file:
+        with open(f"{pwd}DB/penalty/list", "w") as write_file:
             json.dump(gg, write_file)
     if bef != aft and aft == privat and aft != 0:
         channel = await after.channel.guild.create_voice_channel(name=f'Channel For {str(member.name)}', type=discord.ChannelType.voice, category=after.channel.category)
@@ -1168,7 +1168,7 @@ async def on_message(message):
                     jr = json.loads(readStorage(f'DB/sXp/{id}'))
                     copy = jr
                     copy['moderation']['notice'] = copy['moderation']['notice'] + 1
-                    with open(f"DB/sXp/{id}", "w") as write_file:
+                    with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                         json.dump(copy, write_file)
                     alert = await message.channel.send(embed = discord.Embed(title = 'Нарушение правил', description = f'Внимание пользователь ``{message.author.name}`` !\nВы нарушили правила сервера о отправки ссылок в чатах!\nЕсли будет у вас не меньше 5 предупреждений, то вы получаете навсегда мут чата!', color = discord.Colour.dark_red()))
                     msg = await message.author.send(embed = discord.Embed(title = 'Нарушение правил', description = f'Пользователь ``{message.author.name}`` !\n**У вас `{jr["moderation"]["notice"]}` предупреждений.**\nЕсли будет у вас не меньше 5 предупреждений, то вы получаете навсегда мут чата!', color = discord.Colour.dark_red()))
@@ -1179,7 +1179,7 @@ async def on_message(message):
                     await message.author.add_roles(client.get_guild(guildid).get_role(mutecid))
             except FileNotFoundError:
                 copy = pattern
-                with open(f"DB/sXp/{id}", "w") as write_file:
+                with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                     json.dump(copy, write_file)
                 jr = json.loads(readStorage(f'DB/sXp/{id}'))
                 if not jr['moderation']['notice'] > 5:
@@ -1187,7 +1187,7 @@ async def on_message(message):
                     jr = json.loads(readStorage(f'DB/sXp/{id}'))
                     copy = jr
                     copy['moderation']['notice'] = copy['moderation']['notice'] + 1
-                    with open(f"DB/sXp/{id}", "w") as write_file:
+                    with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                         json.dump(copy, write_file)
                     alert = await message.channel.send(embed = discord.Embed(title = 'Нарушение правил', description = f'Внимание пользователь ``{message.author.name}`` !\nВы нарушили правила сервера о отправки ссылок в чатах!\nЕсли будет у вас не меньше 5 предупреждений, то вы получаете навсегда мут чата!', color = discord.Colour.dark_red()))
                     msg = await message.author.send(embed = discord.Embed(title = 'Нарушение правил', description = f'Пользователь ``{message.author.name}`` !\n**У вас `{jr["moderation"]["notice"]}` предупреждений.**\nЕсли будет у вас не меньше 5 предупреждений, то вы получаете навсегда мут чата!', color = discord.Colour.dark_red()))
@@ -1203,14 +1203,14 @@ async def on_message(message):
                 copy = jr
                 copy["main"]["sXp"] = copy["main"]["sXp"] + 1
                 copy["main"]["nm"] = copy["main"]["nm"] + 1
-                with open(f"DB/sXp/{id}", "w") as write_file:
+                with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                     json.dump(copy, write_file)
                 jr = json.loads(readStorage(f'DB/sXp/{id}'))
             except:
                 copy = pattern
                 copy["main"]["sXp"] = copy["main"]["sXp"] + 1
                 copy["main"]["nm"] = copy["main"]["nm"] + 1
-                with open(f"DB/sXp/{id}", "w") as write_file:
+                with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                     json.dump(copy, write_file)
                 jr = json.loads(readStorage(f'DB/sXp/{id}'))
 
@@ -1225,7 +1225,7 @@ async def sxp(ctx, ping: discord.Member, type, number):
                 copy["main"]["sXp"] = copy["main"]["sXp"] + int(number)
             elif type == "del":
                 copy["main"]["sXp"] = copy["main"]["sXp"] - int(number)
-            with open(f"DB/sXp/{id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                 json.dump(copy, write_file)
             jr = json.loads(readStorage(f'DB/sXp/{id}'))
             await ctx.send(':expressionless: Команда принята!')
@@ -1235,24 +1235,24 @@ async def sxp(ctx, ping: discord.Member, type, number):
                 copy["main"]["sXp"] = copy["main"]["sXp"] + int(number)
             elif type == "del":
                 copy["main"]["sXp"] = copy["main"]["sXp"] - int(number)
-            with open(f"DB/sXp/{id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                 json.dump(copy, write_file)
             jr = json.loads(readStorage(f'DB/sXp/{id}'))
     else:
         try:
             jr = json.loads(readStorage(f'DB/sXp/{ctx.author.id}'))
             jr['moderation']['notice'] = jr['moderation']['notice'] + 1
-            with open(f"DB/sXp/{ctx.author.id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{ctx.author.id}", "w") as write_file:
                 json.dump(jr, write_file)
             if jr['moderation']['notice'] > maxnotice:
                 await editjson(ctx, ctx.penalty.id, 9, 'y', 'mc', 'add', 'Большое кол-во предупреждений системы!')
         except FileNotFoundError:
             copy = pattern
-            with open(f"DB/sXp/{ctx.author.id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{ctx.author.id}", "w") as write_file:
                 json.dump(copy, write_file)
             jr = json.loads(readStorage(f'DB/sXp/{ctx.author.id}'))
             jr['moderation']['notice'] = jr['moderation']['notice'] + 1
-            with open(f"DB/sXp/{ctx.author.id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{ctx.author.id}", "w") as write_file:
                 json.dump(jr, write_file)
         await ctx.message.delete()
         embed = discord.Embed(title = 'Нарушение', description = f"**Внимание!**\nВы использовали высокоуровневую команду... \nВам выдаётся предупреждение.\n**Кол-во предупреждений: **`{jr['moderation']['notice']}`", color = ctx.author.color)
@@ -1272,7 +1272,7 @@ async def notice(ctx, ping: discord.Member, type, number):
                 copy["moderation"]["notice"] = copy["moderation"]["notice"] - int(number)
             if copy['moderation']['notice'] > maxnotice:
                 await editjson(ctx, ctx.penalty.id, 9, 'y', 'mc', 'add', 'Большое кол-во предупреждений системы!')
-            with open(f"DB/sXp/{id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                 json.dump(copy, write_file)
             jr = json.loads(readStorage(f'DB/sXp/{id}'))
             await ctx.send(':expressionless: Команда принята!')
@@ -1284,7 +1284,7 @@ async def notice(ctx, ping: discord.Member, type, number):
                 copy["moderation"]["notice"] = copy["moderation"]["notice"] - int(number)
             if copy['moderation']['notice'] > maxnotice:
                 await editjson(ctx, ctx.penalty.id, 9, 'y', 'mc', 'add', 'Большое кол-во предупреждений системы!')
-            with open(f"DB/sXp/{id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                 json.dump(copy, write_file)
             jr = json.loads(readStorage(f'DB/sXp/{id}'))
             await ctx.send(':expressionless: Команда принята!')
@@ -1292,17 +1292,17 @@ async def notice(ctx, ping: discord.Member, type, number):
         try:
             jr = json.loads(readStorage(f'DB/sXp/{ctx.author.id}'))
             jr['moderation']['notice'] = jr['moderation']['notice'] + 1
-            with open(f"DB/sXp/{ctx.author.id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{ctx.author.id}", "w") as write_file:
                 json.dump(jr, write_file)
             if jr['moderation']['notice'] > maxnotice:
                 await editjson(ctx, ctx.penalty.id, 9, 'y', 'mc', 'add', 'Большое кол-во предупреждений системы!')
         except FileNotFoundError:
             copy = pattern
-            with open(f"DB/sXp/{ctx.author.id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{ctx.author.id}", "w") as write_file:
                 json.dump(copy, write_file)
             jr = json.loads(readStorage(f'DB/sXp/{ctx.author.id}'))
             jr['moderation']['notice'] = jr['moderation']['notice'] + 1
-            with open(f"DB/sXp/{ctx.author.id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{ctx.author.id}", "w") as write_file:
                 json.dump(jr, write_file)
         await ctx.message.delete()
         embed = discord.Embed(title = 'Нарушение', description = f"**Внимание!**\nВы использовали высокоуровневую команду... \nВам выдаётся предупреждение.\n**Кол-во предупреждений: **`{jr['moderation']['notice']}`", color = ctx.author.color)
@@ -1388,17 +1388,17 @@ async def get(ctx, type):
         try:
             jr = json.loads(readStorage(f'DB/sXp/{ctx.author.id}'))
             jr['moderation']['notice'] = jr['moderation']['notice'] + 1
-            with open(f"DB/sXp/{ctx.author.id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{ctx.author.id}", "w") as write_file:
                 json.dump(jr, write_file)
             if jr['moderation']['notice'] > maxnotice:
                 await editjson(ctx, ctx.penalty.id, 9, 'y', 'mc', 'add', 'Большое кол-во предупреждений системы!')
         except FileNotFoundError:
             copy = pattern
-            with open(f"DB/sXp/{ctx.author.id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{ctx.author.id}", "w") as write_file:
                 json.dump(copy, write_file)
             jr = json.loads(readStorage(f'DB/sXp/{ctx.author.id}'))
             jr['moderation']['notice'] = jr['moderation']['notice'] + 1
-            with open(f"DB/sXp/{ctx.author.id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{ctx.author.id}", "w") as write_file:
                 json.dump(jr, write_file)
         await ctx.message.delete()
         embed = discord.Embed(title = 'Нарушение', description = f"**Внимание!**\nВы использовали высокоуровневую команду... \nВам выдаётся предупреждение.\n**Кол-во предупреждений: **`{jr['moderation']['notice']}`", color = ctx.author.color)
@@ -1440,17 +1440,17 @@ async def penalty(ctx, prob: discord.Member, time, tt, type, pen, *, text: str):
         try:
             jr = json.loads(readStorage(f'DB/sXp/{ctx.author.id}'))
             jr['moderation']['notice'] = jr['moderation']['notice'] + 1
-            with open(f"DB/sXp/{ctx.author.id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{ctx.author.id}", "w") as write_file:
                 json.dump(jr, write_file)
             if jr['moderation']['notice'] > maxnotice:
                 await editjson(ctx, ctx.penalty.id, 9, 'y', 'mc', 'add', 'Большое кол-во предупреждений системы!')
         except FileNotFoundError:
             copy = pattern
-            with open(f"DB/sXp/{ctx.author.id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{ctx.author.id}", "w") as write_file:
                 json.dump(copy, write_file)
             jr = json.loads(readStorage(f'DB/sXp/{ctx.author.id}'))
             jr['moderation']['notice'] = jr['moderation']['notice'] + 1
-            with open(f"DB/sXp/{ctx.author.id}", "w") as write_file:
+            with open(f"{pwd}DB/sXp/{ctx.author.id}", "w") as write_file:
                 json.dump(jr, write_file)
         await ctx.message.delete()
         embed = discord.Embed(title = 'Нарушение', description = f"**Внимание!**\nВы использовали высокоуровневую команду... \nВам выдаётся предупреждение.\n**Кол-во предупреждений: **`{jr['moderation']['notice']}`", color = ctx.author.color)
