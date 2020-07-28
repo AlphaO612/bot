@@ -1046,7 +1046,7 @@ async def loop():
                         jr = json.loads(readStorage(f'DB/sXp/{i}'))
                     copy = jr
                     copy["moderation"]["banroom"]["hasIt"] = False
-                    with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
+                    with open(f"{pwd}DB/sXp/{i}", "w") as write_file:
                         json.dump(copy, write_file)
                     gg['banroom'].remove(i)
                     with open(f"{pwd}DB/penalty/list", "w") as write_file:
@@ -1072,7 +1072,7 @@ async def loop():
                     print(f'1. mv({i} - {copy["moderation"]["mutevoice"]["hasIt"]}')
                     copy["moderation"]["mutevoice"]["hasIt"] = False
                     print(f'2. mv({i} - {copy["moderation"]["mutevoice"]["hasIt"]}')
-                    with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
+                    with open(f"{pwd}DB/sXp/{i}", "w") as write_file:
                         json.dump(copy, write_file)
                     copy = json.loads(readStorage(f'DB/sXp/{i}'))
                     print(f'3. mv({i} - {copy["moderation"]["mutevoice"]["hasIt"]}')
