@@ -1069,7 +1069,9 @@ async def loop():
                             json.dump(copy, write_file)
                         jr = json.loads(readStorage(f'DB/sXp/{i}'))
                     copy = jr
+                    print(f'1. mv({i} - {copy["moderation"]["mutevoice"]["hasIt"]}')
                     copy["moderation"]["mutevoice"]["hasIt"] = False
+                    print(f'2. mv({i} - {copy["moderation"]["mutevoice"]["hasIt"]}')
                     with open(f"{pwd}DB/sXp/{id}", "w") as write_file:
                         json.dump(copy, write_file)
                     gg['mutevoice'].remove(i)
