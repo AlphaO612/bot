@@ -72,7 +72,6 @@ block = {
         "medium": False,
         "high": False
     }
-    
 }
 
 pattern = {
@@ -1069,13 +1068,9 @@ async def loop():
                             json.dump(copy, write_file)
                         jr = json.loads(readStorage(f'DB/sXp/{i}'))
                     copy = jr
-                    print(f'1. mv({i} - {copy["moderation"]["mutevoice"]["hasIt"]}')
                     copy["moderation"]["mutevoice"]["hasIt"] = False
-                    print(f'2. mv({i} - {copy["moderation"]["mutevoice"]["hasIt"]}')
                     with open(f"{pwd}DB/sXp/{i}", "w") as write_file:
                         json.dump(copy, write_file)
-                    copy = json.loads(readStorage(f'DB/sXp/{i}'))
-                    print(f'3. mv({i} - {copy["moderation"]["mutevoice"]["hasIt"]}')
                     gg['mutevoice'].remove(i)
                     with open(f"{pwd}DB/penalty/list", "w") as write_file:
                         json.dump(gg, write_file)
@@ -1164,7 +1159,7 @@ async def on_message(message):
     await client.process_commands(message)
     id = message.author.id
     if not message.author.bot and message.guild.id == guildid:
-        if ('http://' in message.content or 'https://' in message.content) and message.channel.id in ruleV and god(message.author, block['link']):
+        if ('http://' in message.content or 'https://' in message.content) and message.channel.id in ruleV and not god(message.author, block['link']):
             try:
                 jr = json.loads(readStorage(f'DB/sXp/{id}'))
                 if not jr['moderation']['notice'] > 5:
